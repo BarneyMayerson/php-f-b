@@ -16,6 +16,8 @@ $posts = $db->query($query, [$id])->fetch();
 
 dd($posts);
 
+// Episode 3-21 sticks only database structure
+
 foreach ($posts as $post) {
     echo "<li>{$post['title']}</li>";
 }

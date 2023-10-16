@@ -14,7 +14,7 @@ if (!Validator::email($email)) {
 }
 
 if (!Validator::string($password, 3, 16)) {
-  $errors['password'] = 'Incorrect password has benn provided. Min 3, max 16 characters required.';
+  $errors['password'] = 'Incorrect password has been provided. Min 3, max 16 characters required.';
 }
 
 if (! empty($errors)) {
@@ -36,12 +36,10 @@ if ($user) {
 } else {
     $db->query("INSERT INTO users(email, password) VALUES(:email, :password)", [
         'email' => $email,
-        'password' => password_hash($passwordm, PASSWORD_BCRYPT),
+        'password' => password_hash($password, PASSWORD_BCRYPT),
     ]);
 
-    $_SESSION['user'] = [
-        'email' => $email,
-    ];
+    login($user);
 
     header('location: /');
 

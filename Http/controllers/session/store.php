@@ -16,6 +16,6 @@ if ($form->validate($email, $password)) {
     $form->error('email', 'No matching account found for that email address and password.');
 };
 
-return view('/session/create.view.php', [
-    'errors' => $form->errors(),
-]);
+$_SESSION['_flash']['errors'] = $form->errors();
+
+redirect('/login');

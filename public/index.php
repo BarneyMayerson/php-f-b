@@ -1,6 +1,7 @@
 <?php
 
 use Core\Session;
+use Core\ValidationException;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -27,6 +28,13 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
-$router->route($uri, $method);
+try {
+    $router->route($uri, $method);
+} catch (ValidationException $e) {
+    Session::flash('errors', $e->errors);
+    Session::flash('old', $e->old);
+
+    redirect($router->previousUrl());
+}
 
 Session::unflash();

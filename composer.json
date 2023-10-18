@@ -1,0 +1,16 @@
+{
+    "name": "ian/php-for-beginners",
+    "authors": [
+        {
+            "name": "Barney Mayerson",
+            "email": "mr.barney.mayerson@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}
